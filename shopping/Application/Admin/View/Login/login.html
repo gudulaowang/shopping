@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>『豪情』后台管理</title>
+    <link href="__PUBLIC__/Admin/css/admin_login.css" rel="stylesheet" type="text/css" />
+    <script src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+    <script src="__PUBLIC__/Admin/js/login.js"></script>
+    <script>
+        var index="{:U('Index/index')}";
+    </script>
+</head>
+<body>
+<div class="admin_login_wrap">
+    <h1>后台管理</h1>
+    <div class="adming_login_border">
+        <div class="admin_input">
+            <ul class="admin_items">
+                <li>
+                    <label for="user">用户名：</label>
+                    <input type="text" name="admin_name"  id="user" size="40" class="admin_input_style" />
+                </li>
+                <li>
+                    <label for="pwd">密码：</label>
+                    <input type="password" name="admin_pwd"  id="pwd" size="40" class="admin_input_style" />
+                </li>
+                <li>
+                    <label for="pwd">验证码：</label>
+                    <input type="text" name="code" value="" id="pwd" size="40" class="admin_input_style" />
+
+                </li>
+                <a href="javascript:void(0)" class="change">看不清</a>
+                <li>
+                    <img src="{:U('code')}" width="200px" height="50px" class="code"/>
+                </li>
+                <li>
+                    <input type="button" tabindex="3" id="log" value="登陆" class="btn btn-primary" />
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script> 
+<script type="text/javascript">
+$(function(){
+
+    $(".change").click(function(){
+         var code="__URL__/code";
+          //attr设置或返回被选元素的属性值。
+         $(".code").attr("src",code+"/"+Math.random());
+
+    });
+
+   var admin = {
+        "checkname":false,
+        "checkpwd":false,
+        "checkcode":false
+        
+    };
+    $("input[name='admin_name']").blur(function(){
+          $(this).next().remove();
+          var admin_name=$(this).val();
+          if(admin_name==""){
+            $(this).after("<span class='error' style='color:red' >用户名不能为空</span>");
+            return false;
+          }
+          $(this).after("<span class='success' style='color:green'>√</span>");
+          admin.checkname=true;
+
+    });
+
+    $("input[name='admin_pwd']").blur(function(){
+       
+       // next   找到每个段落的后面紧邻的同辈元素。
+        $(this).next().remove();
+        var admin_pwd=$(this).val();
+        if(admin_pwd==""){
+            $(this).after("<span class='error' style='color:red'>密码不能为空</span>");
+            return false;
+        }
+        $(this).after("<span class='success' style='color:green'>√</span>");
+          admin.checkpwd=true;
+     
+    });
+
+
+    $("input[name='code']").blur(function(){
+        // alert(123);
+        $(this).next().remove();
+        var code=$(this).val();
+        if(code==""){
+            $(this).after("<span class='error' style='color:red'>验证码不能为空</sapn>");
+            return false ;
+        }
+        $(this).after("<span class='success' style='color:green'>√</span>");
+        admin.checkcode=true;
+    });
+
+
+
+
+
+    $("#log").click(function(){
+       // alert(admin.checkcode);return
+        $("input[name='admin_name']").trigger("blur");
+        $("input[name='admin_pwd']").trigger("blur");
+        $("input[name='code']").trigger("blur");
+        if( admin.checkname&&admin.checkpwd&&admin.checkcode){
+            var admin_name = $("input[name='admin_name']").val();
+            var admin_pwd  = $("input[name='admin_pwd']").val();
+            var code  = $("input[name='code']").val();
+           // alert(admin_pwd);
+            $.ajax({
+                type:"post",
+                url:"{:U('Login/login')}",
+                data:{
+                    "admin_name":admin_name,
+                    "admin_pwd":admin_pwd,
+                    "code":code
+                },
+                dataType:"json",
+                success:function(data){
+                    alert(data.msg);
+                    if(data.error==0){
+                        location.href=index
+                    }
+                }
+            });
+
+        }
+
+        });
+
+    });
+</script>

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="__PUBLIC__/Home/" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+<link href="css/common.css" rel="stylesheet" type="text/css" />
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.min.1.8.2.js" type="text/javascript"></script>
+<script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/slide.js"></script>
+<script src="js/common_js.js" type="text/javascript"></script>
+<script src="js/jquery.foucs.js" type="text/javascript"></script>
+<title>用户中心-火源网www.5l99.cn-模板,源码交易!织梦源码,织梦模板,网站模板,网站源码</title>
+</head>
+
+<body>
+<!--顶部样式-->
+<include file="Public/user_top" />
+<!--logo和搜索样式-->
+<include file="Public/user_header" />
+<!--导航栏样式-->
+<include file="Public/user_menu" />
+<!--用户中心-->
+<div class="user_style clearfix" id="user">
+<div class="user_title"><em></em>用户中心</div>
+  <div class="clearfix user" >
+<include file="Public/user_left" />
+    <div class=" right_style r_user_style">
+      <div class="user_Borders">
+       <div class="title_name">
+        <span class="name">个人信息设置</span>
+       </div>
+       <div class="about_user_info">
+       <form method="post" action="{:U('User/user_info')}" enctype="multipart/form-data">  
+       <input type="hidden" value="{$Think.session.user.user_id}" name="user_id"> 
+       <div class="user_layout">
+         <ul >
+          <li><label class="user_title_name">用户头像：</label>
+          <img src="__ROOT__/{$ov.user_img}" width='50' height='50'/>
+          <input type="file" name="user_img">
+          </li>
+          <li><label class="user_name">用户昵称：</label>
+          <input name="" type="text"  class="add_text" value="{$ov.user_name}" /><i>*</i></li>
+          <li><label class="user_title_name">真实姓名：</label>
+          <input name="user_names" type="text"  class="add_text" value="{$ov.user_names}" /><i>*</i></li>
+          <li>
+          <label class="user_title_name">用户性别：</label> 
+          <if condition="$ov.user_sex eq 1">
+          <label class="sex"> 
+          <input type="radio" name="user_sex" value="1" id="RadioGroup1_0" checked="checked" /><span>男</span></label>
+          <label class="sex">
+          <input type="radio" name="user_sex" value="2" id="RadioGroup1_1" /><span>女</span></label> 
+          <else/>
+          <label class="sex"> 
+          <input type="radio" name="user_sex" value="1" id="RadioGroup1_0" /><span>男</span></label>
+          <label class="sex">
+          <input type="radio" name="user_sex" value="2" id="RadioGroup1_1" checked="checked"/><span>女</span></label> 
+            
+          </if>              
+
+          <i>*</i>         
+          </li>
+
+           <li>
+          <label class="user_title_name">手机号：</label>
+          <input name="user_phone" type="text"  class="add_text" value="{$ov.user_phone}" />
+          </li>
+
+          <li>
+          <label class="user_title_name">邮箱地址：</label>
+          <input name="user_email" type="text"  class="add_text" value="{$ov.user_email}" />
+          </li>
+          <li>
+          <label class="user_title_name">用户QQ：</label>
+          <input name="user_qq" type="text"  class="add_text" value="{$ov.user_qq}" />
+          <i>*</i>
+          </li>    
+         </ul>
+         <div class="operating_btn"><input name="name" type="submit" value="提交"  class="submit—btn"/>
+         </div>
+         </div>
+          </form>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public/user_footer" />
+ <!--右侧菜单栏购物车样式-->
+<include file="Public/box" />
+</body>
+</html>

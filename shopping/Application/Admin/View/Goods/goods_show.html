@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/main.css"/>
+    <script type="text/javascript" src="__PUBLIC__/Admin/js/libs/modernizr.min.js"></script>
+</head>
+<body>
+<include file="Public/header" />
+<div class="container clearfix">
+<include file="Public/menu" />
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="{:U(Index/index)}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">商品管理</span></div>
+        </div>
+
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <div class="result-title">
+                    <div class="result-list">
+                        <a href="{:U('Goods/goods_add')}"><i class="icon-font"></i>新增作品</a>
+                        <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
+                    </div>
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <tr>
+            <th class="tc" width="5%">
+            <input class="allChoose" id="qx" name="" type="checkbox">
+            </th>
+                            <th>商品名称</th>
+                            <th>商品id</th>
+                            <th>商品分类</th>
+                            <th>商品数量</th>
+                            <th>商品重量</th>
+                            <th>本店商品售价</th>
+                            <th>运费</th>
+
+                            <th>是否开售</th>
+                            <th>是否包邮</th>
+                            <th>是否上架</th>
+                            <th>商品图片</th>
+                            <th>商品简介</th>
+                            <th>商品详情</th>
+                            <th>上下架</th>
+                        </tr>
+                        <foreach name="res" item="ov">
+                        <tr>
+                            <td class="tc">
+                            <input name="ids" value="{$ov.goods_id}" type="checkbox">
+                            </td>
+                            <td>{$ov.goods_name}</td>
+                            <td>{$ov.goods_id}</td>                 
+                            <td>{$ov.cat_name}</td>
+                            <td>{$ov.goods_number}</td>
+                            <td>{$ov.goods_weight}</td>
+                            <td>{$ov.goods_price}</td>
+                            <td>{$ov.real_freight}</td>
+                            <if condition="$ov.goods_is_sale eq 0">
+                               <td>开售</td>
+                                <else/>
+                                <td>不开售</td>
+                            </if>
+                            <if condition="$ov.is_shipping eq 0">
+                               <td>包邮</td>
+                                <else/>
+                                <td>不包邮</td>
+                            </if>
+                            <if condition="$ov.is_delete eq 0">
+                               <td>上架</td>
+                                <else/>
+                                <td>下架</td>
+                            </if>
+                            <td><img src="__ROOT__/{$ov.goods_img}" width="50px" height="50px"></td>
+                            <td>{$ov.goods_brief}</td>
+                            <td>{$ov.goods_desc}</td>
+                            <if condition="$ov.is_delete eq 0">
+                               <td>
+                                  <a class="link-del" href="{:U('goods_del',array('goods_id'=>$ov['goods_id'],'is_delete'=>$ov['is_delete']))}">下架</a>
+                               </td>
+                            <else/>
+                                <td> 
+                                 <a class="link-del" href="{:U('goods_del',array('goods_id'=>$ov['goods_id'],'is_delete'=>$ov['is_delete']))}">上架
+                                 </a>
+                                </td>
+                            </if>   
+                        </tr>
+                        </foreach>
+                    </table>
+                <div class="page" pagenow="1" pagesum="{$pagesum}">
+                <a href="javascript:void(0)" class="first">首页</a>
+                <a href="javascript:void(0)" class="prev">上一页</a>
+                <a href="javascript:void(0)" class="next">下一页</a>
+                <a href="javascript:void(0)" class="last">尾页</a>
+            </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>
+<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script> 
+<script type="text/javascript">
+    $(function(){
+        //全选全不选
+        $("#qx").click(function(){
+           $("input[name='ids']").prop("checked",this.checked); 
+        });
+
+
+
+        //批量删除
+        $('#batchDel').click(function(){
+            //计算被选中元素的数量
+            var  length=$("input[name='ids']:checked").length;
+                if(length==0){
+                    alert('请至少选择一项');
+                }else{
+                  var id="";
+                  //val([])在区复选框的时候用
+                  var goods_id=$("input[name='ids']:checked").val([]);
+                  // alert(goods_id);
+                  for(var i=0;i<goods_id.length;i++){
+                    id +=","+ goods_id[i].value; 
+                  }
+                  id=id.substr(1);
+                  $.ajax({
+                    type:"post",
+                    url:"{:U('Goods/del_all')}",
+                    data:{
+                        "goods_id":id
+                     },
+                    dataType:"json",
+                    success:function(data){
+                        alert(data.ms);
+                        location.href="{:U('goods_show')}";  
+                    }
+
+                  });
+
+                }
+        })
+
+        //分页
+        $(".page a").click(function(){
+            // alert(123);
+         var pagenow = $(".page").attr("pagenow");
+         var pagesum = $(".page").attr("pagesum");
+         var ablum_id = $(".page").attr("ablum_id");
+         var html = '';
+                if($(this).is(".first")){
+                    var p = 1;
+                }else if($(this).is(".prev")){
+                    var p = parseInt(pagenow)-1;
+
+                }else if($(this).is(".next")){
+                    var p = parseInt(pagenow)+1;
+                }else{
+                    var p = pagesum;
+                }
+                if(p<=0||p>pagesum){
+                    return false;
+                }
+                // alert(p);
+                $.ajax({
+                    type:"post",
+                    url:"{:U('Goods/page')}",
+                    data:"post",
+
+                })
+
+        })
+    
+
+        
+
+
+
+    })
+
+</script>

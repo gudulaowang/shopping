@@ -1,0 +1,21 @@
+[ 2018-06-02T11:32:18+08:00 ] 127.0.0.1 /shopping/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000757s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.013792s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.013856s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.009527s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.009604s ]
+NOTIC: [8] Undefined index: user E:\phpstudy1\WWW\shopping\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 23 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.176114s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.176171s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.009777s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.009821s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001477s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001587s ]
+

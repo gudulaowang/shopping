@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>『每日鲜』后台管理</title>
+    <link href="__PUBLIC__/Admin/css/admin_login.css" rel="stylesheet" type="text/css" />
+    <script src="__PUBLIC__/jquery-1.8.2.min.js"></script>
+    <script src="__PUBLIC__/Admin/js/login.js"></script>
+    <script>
+        var index="{:U('Index/index')}";
+    </script>
+</head>
+<body>
+<div class="admin_login_wrap">
+    <h1>后台管理</h1>
+    <div class="adming_login_border">
+        <div class="admin_input">
+            <ul class="admin_items">
+                <li>
+                    <label for="user">用户名：</label>
+                    <input type="text" name="admin_name" value="" id="user" size="40" class="admin_input_style" />
+                </li>
+                <li>
+                    <label for="pwd">密码：</label>
+                    <input type="password" name="admin_pwd" value="" id="pwd" size="40" class="admin_input_style" />
+                </li>
+                <li>
+                    <input type="button" tabindex="3" id="but" value="注册" class="btn btn-primary" />
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="__PUBLIC__/jquery-1.8.2.min.js"></script> 
+<script type="text/javascript">
+    $(function(){
+        // alert($);
+        $("#but").click(function(){
+            var Index      ="{:U('Admin/index')}";
+            var admin_name =$("input[name='admin_name']").val();
+            var admin_pwd  =$("input[name='admin_pwd']").val();
+            // alert(admin_pwd);
+            $.ajax({
+                type:"post",
+                url:"{:U('login/register')}",
+                data:{
+                "admin_name":admin_name,
+                "admin_pwd":admin_pwd          
+            },
+                dataType:"json",
+                success:function(data){
+                    alert(data.msg);
+                    if(data.error==0){
+                        location.href=Index;
+                    }
+
+                }
+
+            });
+        });
+
+    });
+</script>

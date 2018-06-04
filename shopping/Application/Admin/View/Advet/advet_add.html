@@ -1,0 +1,80 @@
+<!doctype html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/main.css"/>
+    <script type="text/javascript" src="__PUBLIC__/Admin/js/libs/modernizr.min.js"></script>
+</head>
+<script type="text/javascript">
+    Index="{:U('Goods/goods_show')}"
+</script>
+<body>
+<include file="Public/header" />
+<div class="container clearfix">
+<include file="Public/menu" />
+    <!--/sidebar-->
+    <div class="main-wrap">
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="{:U('Index/index')}">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="advet_show">广告管理</a><span class="crumb-step">&gt;</span><span>新增广告</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form  action="{:U('Advet/advet_add')}" method="post"  enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                            <tr>
+                                <th><i class="require-red">*</i>广告标题</th>
+                                <td>
+                                    <input class="common-text required" id="title" name="name" size="50" value="" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>广告链接</th>
+                                <td>
+                                    <input class="common-text required" id="title" name="url" size="50" value="" type="text">
+                                </td>
+                            </tr>                            
+                            <tr>
+                                <th>是否显示：</th>
+                                <td><input type="radio" name="is_show" value="0"> 是  
+                                    <input type="radio" name="is_show" value="1"> 否  
+                            </tr>
+       
+                            <tr>
+                                <th>默认展示方式：</th>
+                                <td><input type="radio" name="type" value="0"> 轮播图  
+                                    <input type="radio" name="type" value="1"> 楼层广告
+
+                            </tr>
+
+                  
+                            <tr>
+                                <th>广告图片：</th>
+                                <td>
+                                <input type="file" name="image" >
+                                </td>   
+                            </tr>
+                            <tr>
+
+                            <tr>
+                                <th><input class="btn btn-primary btn6 mr10" value="提交" type="submit" id=""></th>
+                                <td>
+                                    
+                               <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<div class="user_left">
+      <div class="user_info">
+       <div class="Head_portrait">
+       <img src="__ROOT__/{$Think.session.img}"  width="80px" height="80px"/><!--头像区域-->
+       </div>
+       <div class="user_name">{$Think.session.user.user_name}<a href="#">[个人资料]</a></div>
+      </div>
+      <ul class="Section">
+     
+       <li><a href="{:U('User/user_info')}"><em></em><span>个人信息</span></a></li>
+       <li><a href="{:U('User/user_Password')}"><em></em><span>修改密码</span></a></li>
+      <!--  <li><a href="{:U('User/user_Center')}"><em></em><span>我的订单</span></a></li>
+ -->       
+       <li><a href="{:U('User/user_integral')}"><em></em><span>我的订单</span></a></li>
+       <li><a href="{:U('User/user_Collect')}"><em></em><span>我的收藏</span></a></li>
+       <li><a href="{:U('User/user_address')}"><em></em><span>收货地址管理</span></a></li>
+      </ul>
+</div>

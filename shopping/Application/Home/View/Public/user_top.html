@@ -1,0 +1,29 @@
+<div id="top">
+  <div class="top">
+    <div class="Collection"><em></em><a href="#">收藏我们</a></div>
+	<div class="hd_top_manu clearfix">
+	  <ul class="clearfix">
+	   <if condition="$_SESSION['user']['user_name'] eq null">
+	   <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！<a href="{:U('Login/login')}" class="red">[请登录]</a> 新用户<a href="{:U('Login/register')}" class="red">[免费注册]</a>	
+	   <else/>
+	   <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎{$Think.session.user.user_name}光临本店！ <a href="{:U('Login/login_do')}" class="red">退出登陆</a>
+	   </li>
+	  </if>
+
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的订单</a></li> 
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="{:U('Cart/cart_show')}">购物车(<b>0</b>)</a> </li>
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">联系我们</a></li>
+	   <li class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#" class="hd_menu">客户服务</a>
+	    <div class="hd_menu_list">
+		   <ul>
+		    <li><a href="#">常见问题</a></li>
+			<li><a href="#">在线退换货</a></li>
+		    <li><a href="#">在线投诉</a></li>
+			<li><a href="#">配送范围</a></li>
+		   </ul>
+		</div>	   
+	   </li>
+	  </ul>
+	</div>
+  </div>
+</div>

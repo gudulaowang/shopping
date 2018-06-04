@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="__PUBLIC__/Home/" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+<link href="css/common.css" rel="stylesheet" type="text/css" />
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.min.1.8.2.js" type="text/javascript"></script>
+<script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/slide.js"></script>
+<script src="js/common_js.js" type="text/javascript"></script>
+<script src="js/jquery.foucs.js" type="text/javascript"></script>
+<title>用户积分-火源网www.5l99.cn-模板,源码交易!织梦源码,织梦模板,网站模板,网站源码</title>
+</head>
+
+<body>
+<!--顶部样式-->
+<include file="Public/user_top" />
+<!--logo和搜索样式-->
+<include file="Public/user_header" />
+<!--导航栏样式-->
+<include file="Public/user_menu" />
+<!--用户中心(积分)-->
+<div class="user_style clearfix" id="user">
+<div class="user_title"><em></em>用户中心</div>
+  <div class="clearfix user" >
+  <!--左侧菜单栏样式-->
+<include file="Public/user_left" />
+    <!--右侧内容样式-->
+     <div class="right_style r_user_style">
+      <div class="user_Borders">
+      <div class="title_name">
+        <span class="name">用户订单</span>
+       </div>
+       <!--积分样式-->
+       <div class="user_integral_style slideTxtBox">
+         <div class="hd">
+          <ul>
+           <li>订单获取记录</li>
+         <!--   <LI>积分使用记录</LI> -->
+          </ul>
+         </div>
+         <div class="bd">
+           <ul>
+          <!--   <div class="Integral_Number"><em></em>你当前的积分：<b>3434</b></div> -->
+            <table>
+             <thead>
+               <tr>
+                <td>订单号</td>
+                <td>订单金额</td>
+                <td>收件人</td>
+                <td>收货地址</td>
+               </tr>
+             </thead>
+             <tbody>
+             <foreach name="res" item="ov">
+               <tr>
+               <td>{$ov.order_no}</td>
+               <td>{$ov.real_amount}</td>
+               <td>{$ov.consigness}</td>
+               <td>{$ov.address}</td>
+              </tr>
+              </foreach>
+              
+             </tbody>
+            </table>
+           </ul>
+           <ul>
+         <!--   <div class="Integral_Number"><em></em>你消费的积分：<b>544</b></div> -->
+           </ul>
+         </div>
+       </div>
+       <script>jQuery(".slideTxtBox").slide({trigger:"click"});</script>
+      </div>
+     </div>    
+  </div>
+</div>
+<include file="Public/user_footer" />
+ <!--右侧菜单栏购物车样式-->
+<include file="Public/box" />
+</body>
+</html>

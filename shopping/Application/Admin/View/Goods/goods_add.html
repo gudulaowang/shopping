@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/main.css"/>
+    <script type="text/javascript" src="__PUBLIC__/Admin/js/libs/modernizr.min.js"></script>
+</head>
+<script type="text/javascript">
+    Index="{:U('Goods/goods_show')}"
+</script>
+<body>
+<include file="Public/header" />
+<div class="container clearfix">
+<include file="Public/menu" />
+    <!--/sidebar-->
+    <div class="main-wrap">
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="{:U('Index/index')}">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="goods_show">商品管理</a><span class="crumb-step">&gt;</span><span>新增商品</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form  action="{:U('Goods/goods_add')}" method="post"  enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                            <tr>
+                                <th><i class="require-red">*</i>商品名称</th>
+                                <td>
+                                    <input class="common-text required" id="title" name="goods_name" size="50" value="" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                            <th width="120"><i class="require-red">*</i>商品分类：</th>
+                            <td>
+                            <select name="cat_id" id="catid" class="required" value>
+                                    <foreach name="res" item='vo'>
+                                        <option value="{$vo.cat_id}">
+                                        {:str_repeat("-",$vo[path_id])}{$vo.cat_name}
+                                        </option>          
+                                    </foreach>
+                                </select>
+                            </td>
+                        </tr>
+                            <tr>
+                                <th>商品数量：</th>
+                                <td><input class="common-text" name="goods_number" size="50" value="admin" type="number"></td>
+                            </tr>
+                            <tr>
+                                <th>商品重量：</th>
+                                <td><input class="common-text" name="goods_weight" size="50"  type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>本店商品售价：</th>
+                                <td><input class="common-text" name="goods_price" size="50"  type="text"></td>
+                            </tr>
+                             <tr>
+                                <th>市场售价：</th>
+                                <td><input class="common-text" name="goods_prices" size="50"  type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>运费：</th>
+                                <td><input class="common-text" name="real_freight" size="50"  type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>是否开售：</th>
+                                <td><input type="radio" name="goods_is_sale" value="0"> 是  
+                                    <input type="radio" name="goods_is_sale" value="1"> 否  
+                            </tr>
+                            <tr>
+                                <th>是否包邮：</th>
+                                <td><input type="radio" name="is_shipping" value="0"> 是  
+                                    <input type="radio" name="is_shipping" value="1"> 否  
+                            </tr>
+                            <tr>
+                                <th>是否上架：</th>
+                                <td>
+                                <input type="radio" name="is_delete" value="0"> 是  
+                                <input type="radio" name="is_delete" value="1"> 否  
+                            </tr>
+                            <tr>
+                                <th>商品图片：</th>
+                                <td>
+                                <input type="file" name="goods_img" >
+                                </td>   
+                            </tr>
+                            <tr>
+                            <th>商品简介</th>
+                                <td>
+                                <input type="text" name="goods_brief" >
+                            </td>   
+                            </tr>
+                            <tr>
+                                <th>商品详情：</th>
+                                <td><textarea name="goods_desc" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10"></textarea></td>
+                            </tr>
+
+                            <tr>
+                                <th><input class="btn btn-primary btn6 mr10" value="提交" type="submit" id="good_t"></th>
+                                <td>
+                                    
+                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>
